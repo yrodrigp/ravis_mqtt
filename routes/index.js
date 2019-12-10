@@ -24,11 +24,11 @@ clientMQTT.on("message", function (topic, message) {
 // });
 
 function core(res, req) {
-  console.log("POST")
   /* stablishing connection to mqtt */
-  clientMQTT.publish(channel, "hello yamil")
+  clientMQTT.publish(channel, JSON.stringify(req.query))
   console.log("req.body", req.body)
   console.log("req.query", req.query)
+  console.log("req", req)
   res.send("ok")
 }
 

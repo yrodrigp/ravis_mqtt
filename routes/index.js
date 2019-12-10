@@ -40,12 +40,12 @@ router.get("/", function(req, res, next) {
 /* POST home page. */
 router.post("/", function(req, res, next) {
   console.log("POST")
-  core(req, res)
+  core(res, req)
 })
 
 router.post("/write", function(req, res, next) {
   console.log("POST write")
-  core(req, res)
+  core(res, req)
 })
 
 module.exports = router

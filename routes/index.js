@@ -23,8 +23,20 @@ clientMQTT.on("message", function (topic, message) {
 //   res.render("index", { title: "Express" });
 // });
 
+router.get("/", function(req, res, next) {
+  console.log("GET")
+  /* stablishing connection to mqtt */
+
+  clientMQTT.publish(channel, "hello yamil")
+
+  console.log("req.body", req.body)
+  console.log("req.query", req.query)
+  res.send("ok")
+})
+
 /* POST home page. */
 router.post("/", function(req, res, next) {
+  console.log("POST")
   /* stablishing connection to mqtt */
 
   clientMQTT.publish(channel, "hello yamil")

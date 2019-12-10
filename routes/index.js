@@ -15,20 +15,14 @@ clientMQTT.on("connect", function () {
 clientMQTT.on("message", function (topic, message) {
   console.log("from subscriber", topic)
   console.log(topic, message.toString())
-  // c.end()
 })
-
-/* GET home page. */
-// router.get("/", function(req, res, next) { 
-//   res.render("index", { title: "Express" });
-// });
 
 function core(res, req) {
   /* stablishing connection to mqtt */
   clientMQTT.publish(channel, JSON.stringify(req.query))
   console.log("req.body", req.body)
   console.log("req.query", req.query)
-  console.log("req", req)
+  // console.log("req", req)
   res.send("ok")
 }
 

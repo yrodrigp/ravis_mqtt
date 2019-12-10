@@ -23,27 +23,29 @@ clientMQTT.on("message", function (topic, message) {
 //   res.render("index", { title: "Express" });
 // });
 
-router.get("/", function(req, res, next) {
-  console.log("GET")
+function core(res, req) {
+  console.log("POST")
   /* stablishing connection to mqtt */
-
   clientMQTT.publish(channel, "hello yamil")
-
   console.log("req.body", req.body)
   console.log("req.query", req.query)
   res.send("ok")
+}
+
+router.get("/", function(req, res, next) {
+  console.log("GET")
+  core(res, req)
 })
 
 /* POST home page. */
 router.post("/", function(req, res, next) {
   console.log("POST")
-  /* stablishing connection to mqtt */
+  core(req, res)
+})
 
-  clientMQTT.publish(channel, "hello yamil")
-
-  console.log("req.body", req.body)
-  console.log("req.query", req.query)
-  res.send("ok")
+router.post("/write", function(req, res, next) {
+  console.log("POST write")
+  core(req, res)
 })
 
 module.exports = router
